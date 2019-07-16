@@ -110,13 +110,7 @@ var PinchZoom = function () {
 
         this.enable();
 
-    },
-    sum = function (a, b) {
-        return a + b;
-    },
-    isCloseTo = function (value, expected) {
-        return value > expected - 0.01 && value < expected + 0.01;
-    };
+    }
 
     PinchZoom.prototype = {
 
@@ -162,6 +156,14 @@ var PinchZoom = function () {
             this.lastDragPosition = false;
             this.hasInteraction = true;
             this.handleDrag(event);
+        },
+
+        sum: function (a, b) {
+            return a + b;
+        },
+
+        isCloseTo: function (value, expected) {
+            return value > expected - 0.01 && value < expected + 0.01;
         },
 
         /**

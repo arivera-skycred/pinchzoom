@@ -1,10 +1,5 @@
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
 /*
 
     PinchZoom.js
@@ -86,14 +81,14 @@ var triggerEvent = function triggerEvent(el, name) {
   el.dispatchEvent(event);
 };
 
-var definePinchZoom = function definePinchZoom() {
+var PinchZoom = function PinchZoom() {
   /**
    * Pinch zoom
    * @param el
    * @param options
    * @constructor
    */
-  var PinchZoom = function PinchZoom(el, options) {
+  function PinchZoom(el, options) {
     this.el = el;
     this.zoomFactor = 1;
     this.lastScale = 1;
@@ -117,13 +112,7 @@ var definePinchZoom = function definePinchZoom() {
     }
 
     this.enable();
-  },
-      sum = function sum(a, b) {
-    return a + b;
-  },
-      isCloseTo = function isCloseTo(value, expected) {
-    return value > expected - 0.01 && value < expected + 0.01;
-  };
+  }
 
   PinchZoom.prototype = {
     defaults: {
@@ -170,6 +159,12 @@ var definePinchZoom = function definePinchZoom() {
       this.lastDragPosition = false;
       this.hasInteraction = true;
       this.handleDrag(event);
+    },
+    sum: function sum(a, b) {
+      return a + b;
+    },
+    isCloseTo: function isCloseTo(value, expected) {
+      return value > expected - 0.01 && value < expected + 0.01;
     },
 
     /**
@@ -904,6 +899,5 @@ var definePinchZoom = function definePinchZoom() {
   return PinchZoom;
 };
 
-var PinchZoom = definePinchZoom();
-var _default = PinchZoom;
-exports["default"] = _default;
+exports['default'] = PinchZoom;
+module.exports = exports['default'];
