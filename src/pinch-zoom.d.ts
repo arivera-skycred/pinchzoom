@@ -31,10 +31,8 @@ interface IPinchZoomOptions {
     doubleTapEventName?: string;
 }
 
-declare class PinchZoom {
+export default class PinchZoom {
     constructor(element: HTMLElement, options?: IPinchZoomOptions);
     public enable(): void;
     public disable(): void;
 }
-
-export default PinchZoom;
