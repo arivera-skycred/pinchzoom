@@ -149,7 +149,8 @@ var PinchZoom = function PinchZoom() {
       onDragEnd: null,
       onDragUpdate: null,
       onDoubleTap: null,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      height: null
     },
 
     /**
@@ -274,7 +275,7 @@ var PinchZoom = function PinchZoom() {
     computeInitialOffset: function computeInitialOffset() {
       this.initialOffset = {
         x: -Math.abs(this.el.offsetWidth * this.getInitialZoomFactor() - this.container.offsetWidth) / 2,
-        y: -Math.abs(this.el.offsetHeight * this.getInitialZoomFactor() - this.container.offsetHeight) / 2
+        y: -Math.abs((this.explicitHeight || this.el.offsetHeight) * this.getInitialZoomFactor() - this.container.offsetHeight) / 2
       };
     },
 
@@ -313,7 +314,7 @@ var PinchZoom = function PinchZoom() {
      */
     sanitizeOffset: function sanitizeOffset(offset) {
       var elWidth = this.el.offsetWidth * this.getInitialZoomFactor() * this.zoomFactor;
-      var elHeight = this.el.offsetHeight * this.getInitialZoomFactor() * this.zoomFactor;
+      var elHeight = (this.explicitHeight || this.el.offsetHeight) * this.getInitialZoomFactor() * this.zoomFactor;
       var maxX = elWidth - this.getContainerX() + this.options.horizontalPadding,
           maxY = elHeight - this.getContainerY() + this.options.verticalPadding,
           maxOffsetX = Math.max(maxX, 0),
@@ -518,7 +519,7 @@ var PinchZoom = function PinchZoom() {
      */
     getInitialZoomFactor: function getInitialZoomFactor() {
       var xZoomFactor = this.container.offsetWidth / this.el.offsetWidth;
-      var yZoomFactor = this.container.offsetHeight / this.el.offsetHeight;
+      var yZoomFactor = this.container.offsetHeight / (this.explicitHeight || this.el.offsetHeight);
       return Math.min(xZoomFactor, yZoomFactor);
     },
 
@@ -527,7 +528,7 @@ var PinchZoom = function PinchZoom() {
      * @return the aspect ratio
      */
     getAspectRatio: function getAspectRatio() {
-      return this.el.offsetWidth / this.el.offsetHeight;
+      return this.el.offsetWidth / (this.explicitHeight || this.el.offsetHeight);
     },
 
     /**
@@ -753,6 +754,11 @@ var PinchZoom = function PinchZoom() {
      */
     disable: function disable() {
       this.enabled = false;
+    },
+    setHeight: function setHeight(height) {
+      this.explicitHeight = height;
+      this.updateAspectRatio();
+      this.setupOffsets();
     }
   };
 

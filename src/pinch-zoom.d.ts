@@ -35,4 +35,5 @@ export default class PinchZoom {
     constructor(element: HTMLElement, options?: IPinchZoomOptions);
     public enable(): void;
     public disable(): void;
+    public setHeight(height): void;
 }
