@@ -270,7 +270,7 @@ var PinchZoom = function () {
                   y: -Math.abs(this.el.offsetHeight * this.getInitialZoomFactor() - this.container.offsetHeight) / 2,
               };
             } else {
-              this.initialOffset = { x: 0, y: 0 }
+              this.initialOffset = { x: -0, y: -0 }
             }
         },
 
@@ -521,8 +521,8 @@ var PinchZoom = function () {
          * @return {number} the initial zoom factor
          */
         getInitialZoomFactor: function () {
-            var xZoomFactor, yZoomFactor = 0;
-            
+            var xZoomFactor, yZoomFactor = 1;
+
             if (this.options.computeInitialScaleAndOffset) {
               var xZoomFactor = this.container.offsetWidth / this.el.offsetWidth;
               var yZoomFactor = this.container.offsetHeight / this.el.offsetHeight;
