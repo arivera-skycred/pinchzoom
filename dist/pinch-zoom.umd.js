@@ -114,6 +114,14 @@ var PinchZoom = function PinchZoom() {
     this.enable();
   }
 
+  function sum(a, b) {
+    return a + b;
+  }
+
+  function isCloseTo(value, expected) {
+    return value > expected - 0.01 && value < expected + 0.01;
+  }
+
   PinchZoom.prototype = {
     defaults: {
       tapZoomFactor: 2,
@@ -159,12 +167,6 @@ var PinchZoom = function PinchZoom() {
       this.lastDragPosition = false;
       this.hasInteraction = true;
       this.handleDrag(event);
-    },
-    sum: function sum(a, b) {
-      return a + b;
-    },
-    isCloseTo: function isCloseTo(value, expected) {
-      return value > expected - 0.01 && value < expected + 0.01;
     },
 
     /**
