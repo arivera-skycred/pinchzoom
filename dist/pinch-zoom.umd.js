@@ -280,8 +280,8 @@ var PinchZoom = function PinchZoom() {
         };
       } else {
         this.initialOffset = {
-          x: 0,
-          y: 0
+          x: -0,
+          y: -0
         };
       }
     },
@@ -526,7 +526,7 @@ var PinchZoom = function PinchZoom() {
      */
     getInitialZoomFactor: function getInitialZoomFactor() {
       var xZoomFactor,
-          yZoomFactor = 0;
+          yZoomFactor = 1;
 
       if (this.options.computeInitialScaleAndOffset) {
         var xZoomFactor = this.container.offsetWidth / this.el.offsetWidth;
