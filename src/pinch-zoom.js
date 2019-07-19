@@ -76,7 +76,7 @@ var triggerEvent = function(el, name) {
   el.dispatchEvent(event);
 };
 
-var PinchZoom = function () {
+var PinchZoomF = function () {
 
     /**
      * Pinch zoom
@@ -911,6 +911,6 @@ var PinchZoom = function () {
     return PinchZoom;
 };
 
-exports['default'] = PinchZoom;
+exports['default'] = PinchZoomF;
 
 module.exports = exports['default'];
