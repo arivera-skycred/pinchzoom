@@ -13,6 +13,7 @@ interface IPinchZoomOptions {
     verticalPadding?: number;
     horizontalPadding?: number;
     overflow?: string;
+    computeInitialScaleAndOffset?: boolean;
 
     onZoomStart?: PinchZoomEventHandler;
     onZoomEnd?: PinchZoomEventHandler;
