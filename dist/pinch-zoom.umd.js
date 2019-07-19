@@ -149,7 +149,8 @@ var PinchZoom = function PinchZoom() {
       onDragEnd: null,
       onDragUpdate: null,
       onDoubleTap: null,
-      overflow: 'hidden'
+      overflow: 'hidden',
+      computeInitialScaleAndOffset: true
     },
 
     /**
@@ -272,10 +273,17 @@ var PinchZoom = function PinchZoom() {
      * the element should be centered in the container upon initialization
      */
     computeInitialOffset: function computeInitialOffset() {
-      this.initialOffset = {
-        x: -Math.abs(this.el.offsetWidth * this.getInitialZoomFactor() - this.container.offsetWidth) / 2,
-        y: -Math.abs(this.el.offsetHeight * this.getInitialZoomFactor() - this.container.offsetHeight) / 2
-      };
+      if (this.options.computeInitialScaleAndOffset) {
+        this.initialOffset = {
+          x: -Math.abs(this.el.offsetWidth * this.getInitialZoomFactor() - this.container.offsetWidth) / 2,
+          y: -Math.abs(this.el.offsetHeight * this.getInitialZoomFactor() - this.container.offsetHeight) / 2
+        };
+      } else {
+        this.initialOffset = {
+          x: 0,
+          y: 0
+        };
+      }
     },
 
     /**
@@ -517,8 +525,14 @@ var PinchZoom = function PinchZoom() {
      * @return {number} the initial zoom factor
      */
     getInitialZoomFactor: function getInitialZoomFactor() {
-      var xZoomFactor = this.container.offsetWidth / this.el.offsetWidth;
-      var yZoomFactor = this.container.offsetHeight / this.el.offsetHeight;
+      var xZoomFactor,
+          yZoomFactor = 0;
+
+      if (this.options.computeInitialScaleAndOffset) {
+        var xZoomFactor = this.container.offsetWidth / this.el.offsetWidth;
+        var yZoomFactor = this.container.offsetHeight / this.el.offsetHeight;
+      }
+
       return Math.min(xZoomFactor, yZoomFactor);
     },
 
