@@ -510,7 +510,7 @@ var PinchZoom = function PinchZoom() {
      */
     updateAspectRatio: function updateAspectRatio() {
       this.unsetContainerY();
-      this.setContainerY(this.container.parentElement.offsetHeight);
+      this.setContainerY(this.explicitHeight || this.container.parentElement.offsetHeight);
     },
 
     /**
@@ -759,6 +759,7 @@ var PinchZoom = function PinchZoom() {
       this.explicitHeight = height;
       this.updateAspectRatio();
       this.setupOffsets();
+      this.update();
     }
   };
 
